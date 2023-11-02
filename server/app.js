@@ -1,36 +1,44 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const logger = require("./logger");
+
+//get data from quotes.js
+
+const quotes = require("./quotes");
 
 const app = express();
 app.use(cors());
-app.use(express.json())
-
+app.use(express.json());
 app.use(logger);
 
-app.Get('/', () => {
-    res.send(`Welcome to the quotes API! There are ${quotes.length} available.`);
-})
+const port = 3000;
 
-app.Get('/quotes', (req, res) => {
-    res.send("All the quotes!");
-})
+app.get("/", (req, res) => {
+  res.send(`Welcome to the quotes API! There are ${quotes.length} available.`);
+});
 
-app.Get('/quotes/random', (req, res) => {
-    const randIdx = 3;
-    res.send(quotes[randIdx]);
-})
+// get all data from quotes.js
+app.get("/quotes", (req, res) => {
+  res.send(quotes);
+});
 
-app.Get('/quotes/:id', (req, res) => {
-    const idx = req.params.id;
+//get romdom quotes (ramdom index)
+app.get("/quotes/random", (req, res) => {
+  const randIdx = Math.floor(Math.random() * quotes.length);
+  res.send(quotes[randIdx]);
+});
 
-    res.send(quotes[idx]);
-})
+app.get("/quotes/:id", (req, res) => {
+  const idx = req.params.id;
+  res.send(quotes[idx]);
+});
 
 app.post("/quotes", (req, res) => {
-    const newQuote = req.body;
+  const newQuote = req.body;
 
-    newQuote["id"] = quotes.length;
+  newQuote["id"] = quotes.length;
 
-    res.send(newQuote);
-})
+  res.send(newQuote);
+});
+
+module.exports = app;
