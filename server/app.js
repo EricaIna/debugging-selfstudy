@@ -30,6 +30,12 @@ app.get("/quotes/random", (req, res) => {
 
 app.get("/quotes/:id", (req, res) => {
   const idx = req.params.id;
+  if (idx == undefined) {
+    res.status(404).send("there is a problem of ID");
+  } else {
+    res.send(idx);
+  }
+
   res.send(quotes[idx]);
 });
 
