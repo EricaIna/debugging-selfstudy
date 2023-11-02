@@ -1,13 +1,6 @@
-const http = require("http");
-
-const server = http.createServer((req, res) => {
-  res.end("hello");
-});
-const port = 3000;
-server.listen(3000, () => console.log("server ready"));
-
 const app = require("./app");
+const port = 3000;
 
 app.listen(port, () => {
-  console.log(`API listening on port ${port}.`);
+  console.log(`Example app listening on port ${port}`);
 });

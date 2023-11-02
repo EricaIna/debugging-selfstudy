@@ -1,4 +1,6 @@
 const express = require("express");
+const app = express();
+
 const cors = require("cors");
 const logger = require("./logger");
 
@@ -6,45 +8,44 @@ const logger = require("./logger");
 
 const quotes = require("./quotes");
 
-const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(logger);
 
-const port = 3000;
-
 app.get("/", (req, res) => {
-  res.send(`Welcome to the quotes API! There are ${quotes.length} available.`);
+  //res.send(`Welcome to the quotes API! There are ${quotes.length} available.`);
+  console.log("Sasha");
+  res.send("Haluuuuuu");
 });
 
-// get all data from quotes.js
-app.get("/quotes", (req, res) => {
-  res.send(quotes);
-});
+// // get all data from quotes.js
+// app.get("/quotes", (req, res) => {
+//   res.send(quotes);
+// });
 
-//get romdom quotes (ramdom index)
-app.get("/quotes/random", (req, res) => {
-  const randIdx = Math.floor(Math.random() * quotes.length);
-  res.send(quotes[randIdx]);
-});
+// //get romdom quotes (ramdom index)
+// app.get("/quotes/random", (req, res) => {
+//   const randIdx = Math.floor(Math.random() * quotes.length);
+//   res.send(quotes[randIdx]);
+// });
 
-app.get("/quotes/:id", (req, res) => {
-  const idx = req.params.id;
-  if (idx == undefined) {
-    res.status(404).send("there is a problem of ID");
-  } else {
-    res.send(idx);
-  }
+// app.get("/quotes/:id", (req, res) => {
+//   const idx = req.params.id;
+//   if (idx == undefined) {
+//     res.status(404).send("there is a problem of ID");
+//   } else {
+//     res.send(idx);
+//   }
 
-  res.send(quotes[idx]);
-});
+//   res.send(quotes[idx]);
+// });
 
-app.post("/quotes", (req, res) => {
-  const newQuote = req.body;
+// app.post("/quotes", (req, res) => {
+//   const newQuote = req.body;
 
-  newQuote["id"] = quotes.length;
+//   newQuote["id"] = quotes.length;
 
-  res.send(newQuote);
-});
+//   res.send(newQuote);
+// });
 
 module.exports = app;
