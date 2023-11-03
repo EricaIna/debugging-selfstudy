@@ -1,22 +1,20 @@
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
 
-const cors = require("cors");
-const logger = require("./logger");
+// const cors = require("cors");
+// const logger = require("./logger");
 
-//get data from quotes.js
+// //get data from quotes.js
 
-const quotes = require("./quotes");
+// const quotes = require("./quotes");
 
-app.use(cors());
-app.use(express.json());
-app.use(logger);
+// app.use(cors());
+// app.use(express.json());
+// app.use(logger);
 
-app.get("/", (req, res) => {
-  //res.send(`Welcome to the quotes API! There are ${quotes.length} available.`);
-  console.log("Sasha");
-  res.send("Haluuuuuu");
-});
+// app.get("/", (req, res) => {
+//   //res.send(`Welcome to the quotes API! There are ${quotes.length} available.`);
+// });
 
 // // get all data from quotes.js
 // app.get("/quotes", (req, res) => {
@@ -48,4 +46,4 @@ app.get("/", (req, res) => {
 //   res.send(newQuote);
 // });
 
-module.exports = app;
+//module.exports = app;
