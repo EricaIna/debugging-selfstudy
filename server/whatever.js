@@ -21,19 +21,10 @@ app.get("/quotes", (req, res) => {
 });
 
 app.post("/quotes", (req, res) => {
-  const newQuote = req.body;
-  console.log(typeof quotes);
+  //const newQuote = req.body;
   quotes.push(req.body);
-  //   fs.writeFileSync(
-  //     "./data.js",
-  //     `module.exports = ${JSON.stringify(quotes, null, 2)};`,
-  //     "utf-8"
-  //   );
-  //   fs.writeFileSync("./your-file.json", JSON.stringify(quotes, null, 2));
-  //   const newDataString = `module.exports = ${JSON.stringify(quotes, null, 2)};`;
-  //   fs.writeFileSync("./data.js", newDataString);
-
   res.status(201).send(req.body);
+  console.log(quotes);
 });
 
 app.get("/quotes/:author", (req, res) => {
